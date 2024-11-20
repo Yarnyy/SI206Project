@@ -17,6 +17,8 @@ from googleapiclient.errors import HttpError
 # tab of
 #   https://cloud.google.com/console
 # Please ensure that you have enabled the YouTube Data API for your project.
+
+# Replace API key with file path to key
 DEVELOPER_KEY = 'AIzaSyAjHvWlEotJy5MVqi4WBX6iPRzQYivcY44'
 YOUTUBE_API_SERVICE_NAME = 'youtube'
 YOUTUBE_API_VERSION = 'v3'
@@ -39,21 +41,7 @@ def youtube_search(options):
 
   # Add each result to the appropriate list, and then display the lists of
   # matching videos, channels, and playlists.
-  for search_result in search_response.get('items', []):
-    if search_result['id']['kind'] == 'youtube#video':
-      videos.append('%s (%s)' % (search_result['snippet']['title'],
-                                 search_result['id']['videoId']))
-    elif search_result['id']['kind'] == 'youtube#channel':
-      channels.append('%s (%s)' % (search_result['snippet']['title'],
-                                   search_result['id']['channelId']))
-    elif search_result['id']['kind'] == 'youtube#playlist':
-      playlists.append('%s (%s)' % (search_result['snippet']['title'],
-                                    search_result['id']['playlistId']))
-
-  print('Videos:\n', '\n'.join(videos), '\n')
-  print('Channels:\n', '\n'.join(channels), '\n')
-  print('Playlists:\n', '\n'.join(playlists), '\n')
-
+  print(search_response.get('items'))
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()
