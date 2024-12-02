@@ -1,56 +1,56 @@
-#!/usr/bin/python
+import requests
+import json
 
-# This sample executes a search request for the specified search term.
-# Sample usage:
-#   python search.py --q=surfing --max-results=10
-# NOTE: To use the sample, you must provide a developer key obtained
-#       in the Google APIs Console. Search for "REPLACE_ME" in this code
-#       to find the correct place to provide that key.. hi
+API_KEY = 'AIzaSyAjHvWlEotJy5MVqi4WBX6iPRzQYivcY44'
+SEARCH_URL = 'https://www.googleapis.com/youtube/v3/search'
+VIDEOS_URL = 'https://www.googleapis.com/youtube/v3/videos'
 
-import argparse
+def search_music_videos(api_key, query, region_code='US'):
+    search_params = {
+        'part': 'snippet',
+        'q': 'music',
+        'type': 'video',
+        'videoCategoryId': '10',
+        'regionCode': region_code,
+        'key': api_key,
+        'maxResults': 5  
+    }
 
-from googleapiclient.discovery import build
-from googleapiclient.errors import HttpError
+    try:
+        response = requests.get(SEARCH_URL, params=search_params).json()
+    except:
+        return 'GET Response Error'
+    
+    return response
 
+def get_video_details(api_key, video_ids):
+    video_params = {
+        'part': 'snippet,statistics',
+        'id': ','.join(video_ids),
+        'key': api_key
+    }  
 
-# Set DEVELOPER_KEY to the API key value from the APIs & auth > Registered apps
-# tab of
-#   https://cloud.google.com/console
-# Please ensure that you have enabled the YouTube Data API for your project.
+    try:
+        response = requests.get(VIDEOS_URL, params=video_params).json()
+    except:
+        return 'GET Response Error'
 
-# Replace API key with file path to key
-DEVELOPER_KEY = 'AIzaSyAjHvWlEotJy5MVqi4WBX6iPRzQYivcY44'
-YOUTUBE_API_SERVICE_NAME = 'youtube'
-YOUTUBE_API_VERSION = 'v3'
+    return response
 
-def youtube_search(options):
-  youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION,
-    developerKey=DEVELOPER_KEY)
+def main():
+    query = 'poker face'
+    region_code = 'US'
 
-  # Call the search.list method to retrieve results matching the specified
-  # query term.
-  search_response = youtube.search().list(
-    q=options.q,
-    part='id,snippet',
-    maxResults=options.max_results
-  ).execute()
+    search_response = search_music_videos(API_KEY, query, region_code)
+    video_ids = [item['id']['videoId'] for item in search_response.get('items', [])]
 
-  videos = []
-  channels = []
-  playlists = []
+    video_details = get_video_details(API_KEY, video_ids)
 
-  # Add each result to the appropriate list, and then display the lists of
-  # matching videos, channels, and playlists.
-  print(search_response.get('items'))
+    # Write output to JSON
+    with open('output.json', 'w') as f:
+        json.dump(video_details, f, indent=2)
 
-if __name__ == '__main__':
-  parser = argparse.ArgumentParser()
-  parser.add_argument('--q', help='Search term', default='Google')
-  parser.add_argument('--max-results', help='Max results', default=25)
-  args = parser.parse_args()
+    # TODO: Convert JSON to SQL database file
 
-  youtube_search(args)
-#   try:
-#     youtube_search(args)
-#   except (HttpError, e):
-#     print('An HTTP error %d occurred:\n%s' % (e.resp.status, e.content))
+if __name__ == "__main__":
+    main()
