@@ -8,7 +8,7 @@ VIDEOS_URL = 'https://www.googleapis.com/youtube/v3/videos'
 def search_music_videos(api_key, query, region_code='US'):
     search_params = {
         'part': 'snippet',
-        'q': 'music',
+        'q': query,
         'type': 'video',
         'videoCategoryId': '10',
         'regionCode': region_code,
@@ -38,7 +38,7 @@ def get_video_details(api_key, video_ids):
     return response
 
 def main():
-    query = 'poker face'
+    query = 'poker face' # Change to generate search results
     region_code = 'US'
 
     search_response = search_music_videos(API_KEY, query, region_code)
