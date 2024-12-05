@@ -121,11 +121,6 @@ def fetch_and_store_trending_artists(region_code="US", filename="trending_artist
                 "url": artist['url']
             }
             artists_data.append(artist_info)
-        
-        # Write to a JSON file
-        with open(filename, 'w') as file:
-            json.dump(artists_data, file, indent=4)
-        # print(f"Trending artists data stored in {filename}")
 
         # Insert data into SQLite
         for artist in artists_data:

@@ -1,0 +1,602 @@
+{
+    "spotify": [
+        {
+            "name": "APT.",
+            "artists": [
+                "ROSÉ",
+                "Bruno Mars"
+            ],
+            "popularity": 99,
+            "track_url": "https://open.spotify.com/track/5vNRhkKd0yEAg8suGBpjeY"
+        },
+        {
+            "name": "Too Sweet",
+            "artists": [
+                "Hozier"
+            ],
+            "popularity": 61,
+            "track_url": "https://open.spotify.com/track/5Z0UnEtpLDQyYlWwgi8m9C"
+        },
+        {
+            "name": "Taste",
+            "artists": [
+                "Sabrina Carpenter"
+            ],
+            "popularity": 93,
+            "track_url": "https://open.spotify.com/track/5G2f63n7IPVPPjfNIGih7Q"
+        },
+        {
+            "name": "Beautiful Things",
+            "artists": [
+                "Benson Boone"
+            ],
+            "popularity": 85,
+            "track_url": "https://open.spotify.com/track/6tNQ70jh4OwmPGpYy6R2o9"
+        },
+        {
+            "name": "That’s So True",
+            "artists": [
+                "Gracie Abrams"
+            ],
+            "popularity": 95,
+            "track_url": "https://open.spotify.com/track/7ne4VBA60CxGM75vw0EYad"
+        },
+        {
+            "name": "Die With A Smile",
+            "artists": [
+                "Lady Gaga",
+                "Bruno Mars"
+            ],
+            "popularity": 100,
+            "track_url": "https://open.spotify.com/track/2plbrEY59IikOBgBGLjaoe"
+        },
+        {
+            "name": "Espresso",
+            "artists": [
+                "Sabrina Carpenter"
+            ],
+            "popularity": 89,
+            "track_url": "https://open.spotify.com/track/2qSkIjg1o9h3YT9RAgYN75"
+        },
+        {
+            "name": "Breathe Me In",
+            "artists": [
+                "Besomorph",
+                "Mougleta"
+            ],
+            "popularity": 53,
+            "track_url": "https://open.spotify.com/track/0KR3pUIeWnK7qwf9QhVBRZ"
+        },
+        {
+            "name": "greedy",
+            "artists": [
+                "Tate McRae"
+            ],
+            "popularity": 86,
+            "track_url": "https://open.spotify.com/track/3rUGC1vUpkDG9CZFHMur1t"
+        },
+        {
+            "name": "A Bar Song (Tipsy)",
+            "artists": [
+                "Shaboozey"
+            ],
+            "popularity": 86,
+            "track_url": "https://open.spotify.com/track/2FQrifJ1N335Ljm3TjTVVf"
+        },
+        {
+            "name": "Mantra",
+            "artists": [
+                "JENNIE"
+            ],
+            "popularity": 88,
+            "track_url": "https://open.spotify.com/track/2CspwnypzT7rcWI9RfsoSb"
+        },
+        {
+            "name": "MILLION DOLLAR BABY",
+            "artists": [
+                "Tommy Richman"
+            ],
+            "popularity": 38,
+            "track_url": "https://open.spotify.com/track/7fzHQizxTqy8wTXwlrgPQQ"
+        },
+        {
+            "name": "Game's Up",
+            "artists": [
+                "RIELL"
+            ],
+            "popularity": 45,
+            "track_url": "https://open.spotify.com/track/3IDZc1CbrZSQEd2oMgcWz0"
+        },
+        {
+            "name": "BIRDS OF A FEATHER",
+            "artists": [
+                "Billie Eilish"
+            ],
+            "popularity": 97,
+            "track_url": "https://open.spotify.com/track/6dOtVTDdiauQNBQEDOtlAB"
+        },
+        {
+            "name": "Who",
+            "artists": [
+                "Jimin"
+            ],
+            "popularity": 92,
+            "track_url": "https://open.spotify.com/track/7tI8dRuH2Yc6RuoTjxo4dU"
+        },
+        {
+            "name": "Diet Pepsi",
+            "artists": [
+                "Addison Rae"
+            ],
+            "popularity": 87,
+            "track_url": "https://open.spotify.com/track/6MzofobZt2dm0Kf1hTThFz"
+        },
+        {
+            "name": "Downtown Lover",
+            "artists": [
+                "Besomorph",
+                "Mougleta"
+            ],
+            "popularity": 48,
+            "track_url": "https://open.spotify.com/track/0o9qBOmQbJCDZwPE3ODJPY"
+        },
+        {
+            "name": "Moonlit Floor (Kiss Me)",
+            "artists": [
+                "LISA"
+            ],
+            "popularity": 88,
+            "track_url": "https://open.spotify.com/track/3yDRcs0Y4pPzkvMbUfeF9H"
+        },
+        {
+            "name": "I Had Some Help (Feat. Morgan Wallen)",
+            "artists": [
+                "Post Malone",
+                "Morgan Wallen"
+            ],
+            "popularity": 84,
+            "track_url": "https://open.spotify.com/track/7221xIgOnuakPdLqT0F3nP"
+        },
+        {
+            "name": "i like the way you kiss me",
+            "artists": [
+                "midnight Berlin"
+            ],
+            "popularity": 45,
+            "track_url": "https://open.spotify.com/track/3WW5aPbiVEeRGOSQ8Ax1AA"
+        },
+        {
+            "name": "yes, and?",
+            "artists": [
+                "Ariana Grande"
+            ],
+            "popularity": 73,
+            "track_url": "https://open.spotify.com/track/7gaA3wERFkFkgivjwbSvkG"
+        },
+        {
+            "name": "Belong Together",
+            "artists": [
+                "Mark Ambor"
+            ],
+            "popularity": 81,
+            "track_url": "https://open.spotify.com/track/5uQ7de4EWjb3rkcFxyEOpu"
+        },
+        {
+            "name": "Birds Of A Feather",
+            "artists": [
+                "Besomage",
+                "Hypermorph",
+                "Snoblack"
+            ],
+            "popularity": 46,
+            "track_url": "https://open.spotify.com/track/5NfNX3vbMvmdQaThELc4w3"
+        },
+        {
+            "name": "Please Please Please",
+            "artists": [
+                "Sabrina Carpenter"
+            ],
+            "popularity": 87,
+            "track_url": "https://open.spotify.com/track/5N3hjp1WNayUPZrA8kJmJP"
+        },
+        {
+            "name": "Fortnight (feat. Post Malone)",
+            "artists": [
+                "Taylor Swift",
+                "Post Malone"
+            ],
+            "popularity": 84,
+            "track_url": "https://open.spotify.com/track/2OzhQlSqBEmt7hmkYxfT6m"
+        },
+        {
+            "name": "Lose Control",
+            "artists": [
+                "Besomage",
+                "Black Dolphin"
+            ],
+            "popularity": 50,
+            "track_url": "https://open.spotify.com/track/6h7BZEKFDFk8YMjgI86rjo"
+        },
+        {
+            "name": "HOT TO GO!",
+            "artists": [
+                "Chappell Roan"
+            ],
+            "popularity": 88,
+            "track_url": "https://open.spotify.com/track/4xdBrk0nFZaP54vvZj0yx7"
+        },
+        {
+            "name": "Timeless (with Playboi Carti)",
+            "artists": [
+                "The Weeknd",
+                "Playboi Carti"
+            ],
+            "popularity": 92,
+            "track_url": "https://open.spotify.com/track/1Es7AUAhQvapIcoh3qMKDL"
+        },
+        {
+            "name": "Apple",
+            "artists": [
+                "Charli xcx"
+            ],
+            "popularity": 83,
+            "track_url": "https://open.spotify.com/track/19RybK6XDbAVpcdxSbZL1o"
+        },
+        {
+            "name": "Burning Desire",
+            "artists": [
+                "Besomage",
+                "Mougleta"
+            ],
+            "popularity": 38,
+            "track_url": "https://open.spotify.com/track/5ahGeQ8qR9dAhkzzdYRZVY"
+        },
+        {
+            "name": "KEHLANI",
+            "artists": [
+                "Jordan Adetunji"
+            ],
+            "popularity": 84,
+            "track_url": "https://open.spotify.com/track/2hrycoFU1mZw6YPvMcn8yC"
+        },
+        {
+            "name": "Stargazing",
+            "artists": [
+                "Myles Smith"
+            ],
+            "popularity": 88,
+            "track_url": "https://open.spotify.com/track/3Vr3zh0r7ALn8VLqCiRR10"
+        },
+        {
+            "name": "It's ok I'm ok",
+            "artists": [
+                "Tate McRae"
+            ],
+            "popularity": 84,
+            "track_url": "https://open.spotify.com/track/24XihnoVPWXlKJ4BgXqjVM"
+        },
+        {
+            "name": "Out of My League",
+            "artists": [
+                "CADMIUM",
+                "Timmy Commerford"
+            ],
+            "popularity": 42,
+            "track_url": "https://open.spotify.com/track/5GYgvwMW7g69Rqtzh9GWBM"
+        },
+        {
+            "name": "I Love You, I'm Sorry",
+            "artists": [
+                "Gracie Abrams"
+            ],
+            "popularity": 90,
+            "track_url": "https://open.spotify.com/track/51rfRCiUSvxXlCSCfIztBy"
+        },
+        {
+            "name": "Embrace It",
+            "artists": [
+                "Ndotz"
+            ],
+            "popularity": 87,
+            "track_url": "https://open.spotify.com/track/0io16MKpbeDIdYzmGpQaES"
+        },
+        {
+            "name": "Sailor Song",
+            "artists": [
+                "Gigi Perez"
+            ],
+            "popularity": 67,
+            "track_url": "https://open.spotify.com/track/0UYnhUfnUj5adChuAXvLUB"
+        },
+        {
+            "name": "She Doesn't Mind",
+            "artists": [
+                "Besomage",
+                "Bromage",
+                "Snoblack"
+            ],
+            "popularity": 32,
+            "track_url": "https://open.spotify.com/track/0K0N6C3YIxFa2s5zqdzvDx"
+        },
+        {
+            "name": "Disease",
+            "artists": [
+                "Lady Gaga"
+            ],
+            "popularity": 85,
+            "track_url": "https://open.spotify.com/track/19KlZwqlT3fguP2BeHF1Q1"
+        },
+        {
+            "name": "Guess featuring billie eilish",
+            "artists": [
+                "Charli xcx",
+                "Billie Eilish"
+            ],
+            "popularity": 84,
+            "track_url": "https://open.spotify.com/track/3WOhcATHxK2SLNeP5W3v1v"
+        },
+        {
+            "name": "we can't be friends (wait for your love)",
+            "artists": [
+                "Ariana Grande"
+            ],
+            "popularity": 81,
+            "track_url": "https://open.spotify.com/track/46kspZSY3aKmwQe7O77fCC"
+        },
+        {
+            "name": "Villain",
+            "artists": [
+                "RIELL"
+            ],
+            "popularity": 50,
+            "track_url": "https://open.spotify.com/track/3X1nyZBKJTRkWafIPrcbJ1"
+        },
+        {
+            "name": "Bed Chem",
+            "artists": [
+                "Sabrina Carpenter"
+            ],
+            "popularity": 90,
+            "track_url": "https://open.spotify.com/track/1UHS8Rf6h5Ar3CDWRd3wjF"
+        },
+        {
+            "name": "Evergreen",
+            "artists": [
+                "Richy Mitch & The Coal Miners"
+            ],
+            "popularity": 84,
+            "track_url": "https://open.spotify.com/track/6me7F0aaZjwDo6RJ5MrfBD"
+        },
+        {
+            "name": "Good Luck, Babe!",
+            "artists": [
+                "Chappell Roan"
+            ],
+            "popularity": 93,
+            "track_url": "https://open.spotify.com/track/0WbMK4wrZ1wFSty9F7FCgu"
+        },
+        {
+            "name": "Move",
+            "artists": [
+                "midnight Berlin"
+            ],
+            "popularity": 49,
+            "track_url": "https://open.spotify.com/track/1XHDV6SXCnyKKlp2KM8vHo"
+        },
+        {
+            "name": "2 hands",
+            "artists": [
+                "Tate McRae"
+            ],
+            "popularity": 83,
+            "track_url": "https://open.spotify.com/track/1f18HzFpegqvH4ibGJyeMJ"
+        },
+        {
+            "name": "Love Somebody",
+            "artists": [
+                "Morgan Wallen"
+            ],
+            "popularity": 86,
+            "track_url": "https://open.spotify.com/track/7hR22TOX3RorxJPcsz5Wbo"
+        },
+        {
+            "name": "F*ck With Me",
+            "artists": [
+                "RIELL"
+            ],
+            "popularity": 37,
+            "track_url": "https://open.spotify.com/track/4dfTIzn1xxI1JWSOxMXjdH"
+        },
+        {
+            "name": "Whatever She Wants",
+            "artists": [
+                "Bryson Tiller"
+            ],
+            "popularity": 78,
+            "track_url": "https://open.spotify.com/track/57wp7VFnV8X0pSVnYArGeJ"
+        }
+    ],
+    "lastfm": [],
+    "youtube": [
+        {
+            "title": "squabble up",
+            "channel": "Kendrick Lamar",
+            "view_count": 15018323,
+            "video_url": "https://www.youtube.com/watch?v=fuV4yQWdn_4"
+        },
+        {
+            "title": "Juice WRLD - Empty Out Your Pockets (Official Fortnite Video)",
+            "channel": "JuiceWRLDVEVO",
+            "view_count": 8170443,
+            "video_url": "https://www.youtube.com/watch?v=hgYhws0AHcg"
+        },
+        {
+            "title": "Kendrick Lamar - tv off (Official Audio)",
+            "channel": "Kendrick Lamar",
+            "view_count": 11754092,
+            "video_url": "https://www.youtube.com/watch?v=U8F5G5wR1mk"
+        },
+        {
+            "title": "Kendrick Lamar - wacced out murals (Official Audio)",
+            "channel": "Kendrick Lamar",
+            "view_count": 9591290,
+            "video_url": "https://www.youtube.com/watch?v=YwUQ_5iV9pY"
+        },
+        {
+            "title": "Juice WRLD - Misfit (Official Music Video)",
+            "channel": "JuiceWRLDVEVO",
+            "view_count": 2189403,
+            "video_url": "https://www.youtube.com/watch?v=6TK--iArtQM"
+        },
+        {
+            "title": "Kevin Gates - Be Somebody (Official Music Video)",
+            "channel": "kevingatesTV",
+            "view_count": 1621086,
+            "video_url": "https://www.youtube.com/watch?v=ne2IaBPxGUE"
+        },
+        {
+            "title": "Megan Thee Stallion - Roc Steady (feat. Flo Milli) [Official Video]",
+            "channel": "Megan Thee Stallion",
+            "view_count": 2291838,
+            "video_url": "https://www.youtube.com/watch?v=HozPPyqW0dY"
+        },
+        {
+            "title": "Juice WRLD - The Party Never Ends (Official Music Video)",
+            "channel": "Juice WRLD",
+            "view_count": 1521650,
+            "video_url": "https://www.youtube.com/watch?v=YEYu4cD5KAU"
+        },
+        {
+            "title": "Melanie Martinez - SPIDER WEB (Official Music Video)",
+            "channel": "melanie martinez",
+            "view_count": 820706,
+            "video_url": "https://www.youtube.com/watch?v=Qc1vonVAfmk"
+        },
+        {
+            "title": "Juice WRLD - Cuffed (Official Music Video)",
+            "channel": "Juice WRLD",
+            "view_count": 994568,
+            "video_url": "https://www.youtube.com/watch?v=_MUSrN3ACV4"
+        },
+        {
+            "title": "PEELINGS (Telugu Lyrical Video) | Pushpa 2 The Rule | Allu Arjun | Rashmika Mandanna | Sukumar | DSP",
+            "channel": "T-Series Telugu",
+            "view_count": 21830998,
+            "video_url": "https://www.youtube.com/watch?v=8RAd-_Qj_ac"
+        },
+        {
+            "title": "GloRilla - I LUV HER (feat. T-Pain) (Official Music Video)",
+            "channel": "GloRillaVEVO",
+            "view_count": 11033165,
+            "video_url": "https://www.youtube.com/watch?v=q44VdjcsjPg"
+        },
+        {
+            "title": "Kodak Black -  News Matt [Official Video]",
+            "channel": "Kodak Black",
+            "view_count": 798024,
+            "video_url": "https://www.youtube.com/watch?v=CcNG88d34ow"
+        },
+        {
+            "title": "¥$, North West, Chicago West, Yuno Miles - BOMB",
+            "channel": "KanyeWestVEVO",
+            "view_count": 2075923,
+            "video_url": "https://www.youtube.com/watch?v=qeWutl38TQw"
+        },
+        {
+            "title": "YOVNGCHIMI - LUCIFER 👹 (Official Video)",
+            "channel": "YOVNGCHIMI",
+            "view_count": 2502592,
+            "video_url": "https://www.youtube.com/watch?v=arZGPi7q_T4"
+        },
+        {
+            "title": "Nadie- Tito Double P (Video Oficial)",
+            "channel": "Tito Double P",
+            "view_count": 13259545,
+            "video_url": "https://www.youtube.com/watch?v=sI2TE_hYFYQ"
+        },
+        {
+            "title": "Defying Gravity (From Wicked The Soundtrack)",
+            "channel": "Republic Records",
+            "view_count": 4813051,
+            "video_url": "https://www.youtube.com/watch?v=qeqj5GnoFUY"
+        },
+        {
+            "title": "Juice WRLD - Party By Myself (Official Audio)",
+            "channel": "Juice WRLD",
+            "view_count": 624200,
+            "video_url": "https://www.youtube.com/watch?v=35F29uYoqo4"
+        },
+        {
+            "title": "Dave Blunts - The Cup (Official Music Video)",
+            "channel": "Dave Blunts",
+            "view_count": 277365,
+            "video_url": "https://www.youtube.com/watch?v=Ssj5ZBuhwIo"
+        },
+        {
+            "title": "Hunxho - Ball Forever [Official Video]",
+            "channel": "Hunxho",
+            "view_count": 685908,
+            "video_url": "https://www.youtube.com/watch?v=nki9ZTF9Uls"
+        },
+        {
+            "title": "V 'Winter Ahead (with PARK HYO SHIN)' Official MV",
+            "channel": "HYBE LABELS",
+            "view_count": 9305912,
+            "video_url": "https://www.youtube.com/watch?v=HAWYOuMGkK0"
+        },
+        {
+            "title": "Twenty One Pilots - “The Line” (from Arcane Season 2) [Official Music Video]",
+            "channel": "League of Legends",
+            "view_count": 15964565,
+            "video_url": "https://www.youtube.com/watch?v=E2Rj2gQAyPA"
+        },
+        {
+            "title": "Stromae, Pomme - “Ma Meilleure Ennemie” (from Arcane Season 2) [Official Visualizer]",
+            "channel": "Riot Games Music",
+            "view_count": 13544024,
+            "video_url": "https://www.youtube.com/watch?v=1F3OGIFnW1k"
+        },
+        {
+            "title": "Grupo Firme - Hubiéramos (Video Oficial)",
+            "channel": "Grupo Firme",
+            "view_count": 1944830,
+            "video_url": "https://www.youtube.com/watch?v=DnVkHWAGaRw"
+        },
+        {
+            "title": "Ma Meilleure Ennemie (from the series Arcane League of Legends)",
+            "channel": "Stromae - Topic",
+            "view_count": 8620573,
+            "video_url": "https://www.youtube.com/watch?v=AGgfFGrN88s"
+        },
+        {
+            "title": "Yungeen Ace - Done Crying (Official Music Video)",
+            "channel": "Yungeen Ace",
+            "view_count": 422299,
+            "video_url": "https://www.youtube.com/watch?v=OuJvidXxDXM"
+        },
+        {
+            "title": "Juice WRLD - Floor It (Official Audio)",
+            "channel": "Juice WRLD",
+            "view_count": 685106,
+            "video_url": "https://www.youtube.com/watch?v=lCZEbedzevQ"
+        },
+        {
+            "title": "Screwly G - \"Bloody Mfa\" (Official Video)",
+            "channel": "Screwly G",
+            "view_count": 234142,
+            "video_url": "https://www.youtube.com/watch?v=aMArztOqVkg"
+        },
+        {
+            "title": "Screwly G x Baby Drill - Back innat Mode Again (Official Video)",
+            "channel": "Screwly G",
+            "view_count": 598653,
+            "video_url": "https://www.youtube.com/watch?v=nlCH-r4WBtU"
+        },
+        {
+            "title": "EST Gee - The Streets",
+            "channel": "ESTGeeVEVO",
+            "view_count": 559916,
+            "video_url": "https://www.youtube.com/watch?v=vpCZcuEaJs4"
+        }
+    ]
+}

@@ -1,0 +1,88 @@
+import requests
+import json
+
+# API Details 
+API_KEY = "160e50d8eefda94217d780b3ad60e5ce" 
+BASE_URL = "https://ws.audioscrobbler.com/2.0/"
+
+#Fetch the top tracks for the USA 
+
+def fetch_top_tracks_and_save_to_json(country):
+
+    #the parameters for the api
+    params = {
+        "method": "geo.gettoptracks",
+        "country": country,
+        "api_key": API_KEY,
+        "format": "json"
+    } 
+
+    response = requests.get(BASE_URL, params=params)
+        
+    # Parse the JSON response
+    data = response.json()
+
+    #looking for the string "tracks" in the data
+        
+    if "tracks" in data:
+        #since the data is structures with 2 dictionaries to get the top track, must index in
+        top_tracks = data['tracks']['track']
+        return top_tracks
+    else:
+        print("Error: Response does not contain the expected data.")
+        return []
+    
+#Then, create fetch_genre_for_tracks function to get the genres
+
+def fetch_genre_for_tracks(country):
+    """Fetch genres for each track in the top tracks list."""
+    top_tracks = fetch_top_tracks_and_save_to_json(country)
+
+    if not top_tracks:
+        return  # Exit if no tracks were fetched
+    
+    #initialize a list with tracks with genres
+
+    tracks_with_genres = []
+
+    #loop into the data
+
+    for track in top_tracks:
+
+        #grab the necessary data
+        track_name = track['name']
+        artist_name = track['artist']['name']
+
+        # Fetch genre information for each track
+        params = {
+            "method": "track.getInfo",
+            "track": track_name,
+            "artist": artist_name,
+            "api_key": API_KEY,
+            "format": "json"
+        }
+
+        #Parse the json response
+
+        response = requests.get(BASE_URL, params=params)
+        track_data = response.json()
+
+        # Extract genres (tags) if available
+        if "track" in track_data and "toptags" in track_data["track"]:
+            tags = track_data["track"]["toptags"]["tag"]
+            genres = [tag["name"] for tag in tags]
+        else:
+            genres = []
+
+        # Add genre information to the track details
+        track["genres"] = genres
+        tracks_with_genres.append(track)
+
+    # Save tracks with genres to a JSON file
+    filename = f'top_tracks_with_genres_{country}.json'
+    with open(filename, 'w', encoding='utf-8') as f:
+        json.dump(tracks_with_genres, f, ensure_ascii=False, indent=4)
+    print(f"Data successfully saved to '{filename}'")
+
+
+fetch_genre_for_tracks("United States")
