@@ -79,6 +79,7 @@ def fetch_lastfm_genres(top_tracks):
         genres = [tag["name"] for tag in track_data.get("track", {}).get("toptags", {}).get("tag", [])]
         track["genres"] = genres
         tracks_with_genres.append(track)
+
     return tracks_with_genres
 
 # Fetch YouTube Popular Music Videos
@@ -119,7 +120,7 @@ def fetch_youtube_videos(region_code="US"):
 # Combine Data and Save as JSON
 def combine_and_save_data():
     spotify_data = fetch_spotify_top_tracks()
-    lastfm_tracks = fetch_lastfm_top_tracks("US")
+    lastfm_tracks = fetch_lastfm_top_tracks("United States")
     lastfm_data = fetch_lastfm_genres(lastfm_tracks)
     youtube_data = fetch_youtube_videos()
 
