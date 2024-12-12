@@ -4,6 +4,7 @@ import json
 import requests
 import matplotlib.pyplot as plt
 import pandas as pd
+from pandas import json_normalize
 import sqlite3
 
 # Spotify API Credentials
@@ -24,17 +25,10 @@ sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(
     client_secret=SPOTIPY_CLIENT_SECRET
 ))
 
-# SQLite Database Setup
-conn = sqlite3.connect('music_data.db')
-cursor = conn.cursor()
-
-# TODO Create SQL Tables
-
-
 # Fetch Spotify Global Top 50
 def fetch_spotify_top_tracks():
     playlist_id = "1Cgey68pUlQGsCPI2wJuxr"
-    results = sp.playlist_tracks(playlist_id=playlist_id, limit=50)
+    results = sp.playlist_tracks(playlist_id=playlist_id, limit=30)
     top_tracks = [
         {
             "name": track['track']['name'],
@@ -52,7 +46,8 @@ def fetch_lastfm_top_tracks(country):
         "method": "geo.gettoptracks",
         "country": country,
         "api_key": LASTFM_API_KEY,
-        "format": "json"
+        "format": "json",
+        "limit": 30
     }
     response = requests.get(LASTFM_BASE_URL, params=params)
     data = response.json()
@@ -89,7 +84,7 @@ def fetch_youtube_videos(region_code="US"):
         "chart": "mostPopular",
         "regionCode": region_code,
         "videoCategoryId": "10",  # Music category
-        "maxResults": 50,
+        "maxResults": 30,
         "key": YOUTUBE_API_KEY
     }
     response = requests.get(f"{YOUTUBE_BASE_URL}/videos", params=params)
@@ -107,6 +102,59 @@ def fetch_youtube_videos(region_code="US"):
     return []
 
 # TODO Store Data in Database
+
+
+# SQLite Database Setup
+conn = sqlite3.connect('music_data.db')
+cursor = conn.cursor()
+
+# TODO Create SQL Tables
+
+# Load JSON data
+with open('combined_music_data.json', 'r', encoding='utf-8') as f:
+    data = json.load(f)
+
+# Create Spotify Table
+cursor.execute('''CREATE TABLE IF NOT EXISTS Spotify (
+               id INTEGER PRIMARY KEY,
+               name TEXT,
+               artists TEXT,
+               popularity INTEGER,
+               track_url TEXT)
+               ''')
+
+# Create Lastfm Table
+cursor.execute('''CREATE TABLE IF NOT EXISTS Lastfm (
+               id INTEGER PRIMARY KEY,
+               name TEXT,
+               duration INTEGER,
+               listeners INTEGER,
+               mbid TEXT,
+               url TEXT,
+               streamable TEXT,
+               artist_name TEXT,
+               artist_mbid TEXT,
+               artist_url TEXT,
+               image_small TEXT,
+               image_medium TEXT,
+               image_large TEXT,
+               image_extralarge TEXT,
+               track_url TEXT,
+               rank INTEGER)
+               ''')
+
+# Create Youtube table
+cursor.execute('''CREATE TABLE IF NOT EXISTS YouTube (
+               id INTEGER PRIMARY KEY,
+               title TEXT,
+               channel TEXT,
+               view_count INTEGER,
+               video_url TEXT) 
+               ''')
+
+conn.commit()
+print("DB Commit Successful")
+conn.close()
 
     # Spotify Data
 
@@ -136,8 +184,8 @@ def combine_and_save_data():
     print("Data successfully saved to 'combined_music_data.json'")
     return combined_data
 
-combine_and_save_data()
-
+# combine_and_save_data()
+#TODO: Uncomment when ready to fetch new data
 
 # Generate Visualizations
 
