@@ -166,9 +166,29 @@ for track in data['spotify'][:25]:
     rows['spotify'] += 1
 
 # Insert Lastfm data and limit to 25 entries
+for track in data['lastfm'][:25]:
+    cursor.execute('''INSERT INTO Lastfm (name, duration, listeners, mbid, url, streamable, artist_name, artist_mbid,
+                                        artist_url, image_small, image_medium, image_large, image_extralarge, rank)
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''',
+                   (track['name'],
+                   int(track['duration']),
+                   track['listeners'],
+                   track['mbid'],
+                   track['url'],
+                   track['streamable']['#text'],
+                   track['artist']['name'],
+                   track['artist']['mbid'],
+                   track['artist']['url'],
+                   track['image'][0]['#text'], # image_small
+                   track['image'][1]['#text'], # image_medium
+                   track['image'][2]['#text'], # image_large
+                   track['image'][3]['#text'], # image_extralarge
+                   int(track['@attr']['rank'])))
+    rows['lastfm'] += 1
 
 # Insert Youtube data and limit to 25 entries
-
+for track in data['youtube'][:25]:
+    pass
 
 conn.commit()
 print("DB Commit Successful")
