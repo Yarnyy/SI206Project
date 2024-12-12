@@ -152,6 +152,24 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS YouTube (
                video_url TEXT) 
                ''')
 
+# Track number of rows
+rows = {'spotify': 0, 'lastfm': 0, 'youtube': 0}
+
+# Insert Spotify data and limit to 25 entries
+for track in data['spotify'][:25]:
+    cursor.execute('''INSERT INTO Spotify (name, artists, popularity, track_url)
+                   VALUES (?, ?, ?, ?)''',
+                   (track['name'],
+                    ','.join(track['artists']),
+                     track['popularity'],
+                    track['track_url']))
+    rows['spotify'] += 1
+
+# Insert Lastfm data and limit to 25 entries
+
+# Insert Youtube data and limit to 25 entries
+
+
 conn.commit()
 print("DB Commit Successful")
 conn.close()
