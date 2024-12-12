@@ -101,14 +101,32 @@ def fetch_youtube_videos(region_code="US"):
         ]
     return []
 
-# TODO Store Data in Database
+# Combine Data and Save as JSON
+def combine_and_save_data():
+    spotify_data = fetch_spotify_top_tracks()
+    lastfm_tracks = fetch_lastfm_top_tracks("United States")
+    lastfm_data = fetch_lastfm_genres(lastfm_tracks)
+    youtube_data = fetch_youtube_videos()
+
+    combined_data = {
+        "spotify": spotify_data,
+        "lastfm": lastfm_data,
+        "youtube": youtube_data
+    }
+
+    with open("combined_music_data.json", "w", encoding="utf-8") as f:
+        json.dump(combined_data, f, ensure_ascii=False, indent=4)
+
+    print("Data successfully saved to 'combined_music_data.json'")
+    return combined_data
+
+# combine_and_save_data()
+# NOTE: Uncomment when ready to refresh JSON contents
 
 
 # SQLite Database Setup
 conn = sqlite3.connect('music_data.db')
 cursor = conn.cursor()
-
-# TODO Create SQL Tables
 
 # Load JSON data
 with open('combined_music_data.json', 'r', encoding='utf-8') as f:
@@ -152,8 +170,8 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS YouTube (
                video_url TEXT) 
                ''')
 
-# Track number of rows
-rows = {'spotify': 0, 'lastfm': 0, 'youtube': 0}
+# Track number of rows in each table
+row_count = {'spotify': 0, 'lastfm': 0, 'youtube': 0}
 
 # Insert Spotify data and limit to 25 entries
 for track in data['spotify'][:25]:
@@ -163,7 +181,7 @@ for track in data['spotify'][:25]:
                     ','.join(track['artists']),
                      track['popularity'],
                     track['track_url']))
-    rows['spotify'] += 1
+    row_count['spotify'] += 1
 
 # Insert Lastfm data and limit to 25 entries
 for track in data['lastfm'][:25]:
@@ -184,46 +202,22 @@ for track in data['lastfm'][:25]:
                    track['image'][2]['#text'], # image_large
                    track['image'][3]['#text'], # image_extralarge
                    int(track['@attr']['rank'])))
-    rows['lastfm'] += 1
+    row_count['lastfm'] += 1
 
 # Insert Youtube data and limit to 25 entries
 for track in data['youtube'][:25]:
-    pass
+    cursor.execute('''INSERT INTO YouTube (title, channel, view_count, video_url)
+                   VALUES (?, ?, ?, ?)''',
+                   (track['title'],
+                    track['channel'],
+                    track['view_count'],
+                    track['video_url']))
+    row_count['youtube'] += 1
 
+# Commit changes and close database
 conn.commit()
 print("DB Commit Successful")
 conn.close()
-
-    # Spotify Data
-
-
-    # Last.fm Data
-
-
-    # YouTube Data
-
-
-# Combine Data and Save as JSON
-def combine_and_save_data():
-    spotify_data = fetch_spotify_top_tracks()
-    lastfm_tracks = fetch_lastfm_top_tracks("United States")
-    lastfm_data = fetch_lastfm_genres(lastfm_tracks)
-    youtube_data = fetch_youtube_videos()
-
-    combined_data = {
-        "spotify": spotify_data,
-        "lastfm": lastfm_data,
-        "youtube": youtube_data
-    }
-
-    with open("combined_music_data.json", "w", encoding="utf-8") as f:
-        json.dump(combined_data, f, ensure_ascii=False, indent=4)
-
-    print("Data successfully saved to 'combined_music_data.json'")
-    return combined_data
-
-# combine_and_save_data()
-#TODO: Uncomment when ready to fetch new data
 
 # Generate Visualizations
 
