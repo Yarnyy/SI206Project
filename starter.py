@@ -123,7 +123,6 @@ def combine_and_save_data():
 # combine_and_save_data()
 # NOTE: Uncomment when ready to refresh JSON contents
 
-
 # SQLite Database Setup
 conn = sqlite3.connect('music_data.db')
 cursor = conn.cursor()
@@ -226,24 +225,8 @@ print(f"Added {row_count['spotify_tracks']} Spotify rows")
 print(f"Added {row_count['lastfm']} Lastfm rows")
 print(f"Added {row_count['youtube']} YouTube rows")
 
-# cursor.execute('SELECT AVG(popularity) FROM Spotify')
-
-# cursor.execute('SELECT ')
-
-# avg_spotify_popularity = cursor.fetchone()[0]
-
+# Close database connection
 conn.close()
-
-# Generate Visualizations
-
-    # Spotify Popularity
-
-
-    # YouTube View Count
-
-
-    # Last.fm Genre Distribution
-  
 
 # Main Execution
 
