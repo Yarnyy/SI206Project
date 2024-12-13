@@ -133,105 +133,105 @@ with open('combined_music_data.json', 'r', encoding='utf-8') as f:
     data = json.load(f)
 
 # Delete existing data
-# cursor.execute('DELETE FROM Spotify')
+# cursor.execute('DELETE FROM SpotifyArtists')
+# cursor.execute('DELETE FROM SpotifyTracks')
 # cursor.execute('DELETE FROM Lastfm')
 # cursor.execute('DELETE FROM YouTube')
 
-# Create Spotify Table
-cursor.execute('''CREATE TABLE IF NOT EXISTS Spotify (
-               id INTEGER PRIMARY KEY,
-               name TEXT,
-               artists TEXT,
-               popularity INTEGER,
-               track_url TEXT)
+# Create SpotifyTracks Table
+cursor.execute('''CREATE TABLE IF NOT EXISTS SpotifyTracks (
+               track_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+               name TEXT UNIQUE,
+               popularity INTEGER
+               )
+               ''')
+
+# Create SpotifyArtists Table
+cursor.execute('''CREATE TABLE IF NOT EXISTS SpotifyArtists (
+               artist_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+               track_id INTEGER,
+               name TEXT UNIQUE,
+               FOREIGN KEY (track_id) REFERENCES SpotifyTracks(track_id)
+               )
                ''')
 
 # Create Lastfm Table
 cursor.execute('''CREATE TABLE IF NOT EXISTS Lastfm (
-               id INTEGER PRIMARY KEY,
-               name TEXT,
-               duration INTEGER,
+               id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+               name TEXT UNIQUE,
                listeners INTEGER,
-               mbid TEXT,
-               url TEXT,
-               streamable TEXT,
-               artist_name TEXT,
-               artist_mbid TEXT,
-               artist_url TEXT,
-               image_small TEXT,
-               image_medium TEXT,
-               image_large TEXT,
-               image_extralarge TEXT,
-               track_url TEXT,
-               rank INTEGER)
+               artist_name TEXT UNIQUE,
+               rank INTEGER,
+               genres TEXT UNIQUE
+               )
                ''')
 
 # Create Youtube table
 cursor.execute('''CREATE TABLE IF NOT EXISTS YouTube (
-               id INTEGER PRIMARY KEY,
-               title TEXT,
-               channel TEXT,
-               view_count INTEGER,
-               video_url TEXT) 
+               id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+               title TEXT UNIQUE,
+               channel TEXT UNIQUE,
+               view_count INTEGER
+               ) 
                ''')
 
 # Track number of rows in each table
-row_count = {'spotify': 0, 'lastfm': 0, 'youtube': 0}
+row_count = {'spotify_tracks': 0, 'lastfm': 0, 'youtube': 0}
 
 def get_current_rows(table):
     cursor.execute(f"SELECT COUNT(*) FROM {table}")
     return cursor.fetchone()[0]
 
-spotify_count = get_current_rows('Spotify')
+spotify_count = get_current_rows('SpotifyTracks')
 lastfm_count = get_current_rows('Lastfm')
 youtube_count = get_current_rows('YouTube')
 
 # Insert Spotify data and limit to 25 entries
 for track in data['spotify'][spotify_count:spotify_count + 25]:
-    cursor.execute('''INSERT INTO Spotify (name, artists, popularity, track_url)
-                   VALUES (?, ?, ?, ?)''',
+    cursor.execute('''INSERT OR IGNORE INTO SpotifyTracks (name, popularity)
+                   VALUES (?, ?)''',
                    (track['name'],
-                    ','.join(track['artists']),
-                     track['popularity'],
-                    track['track_url']))
-    row_count['spotify'] += 1
+                    track['popularity']))
+    track_id = cursor.lastrowid # Get id of current AUTOINCREMENT insert
+    for artist in track['artists']:
+        cursor.execute('''INSERT OR IGNORE INTO SpotifyArtists (track_id, name)
+                       VALUES (?, ?)''',
+                       (track_id,
+                        artist))    
+    row_count['spotify_tracks'] += 1                   
 
 # Insert Lastfm data and limit to 25 entries
 for track in data['lastfm'][lastfm_count:lastfm_count + 25]:
-    cursor.execute('''INSERT INTO Lastfm (name, duration, listeners, mbid, url, streamable, artist_name, artist_mbid,
-                                        artist_url, image_small, image_medium, image_large, image_extralarge, rank)
-                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''',
+    cursor.execute('''INSERT OR IGNORE INTO Lastfm (name, listeners, artist_name, rank, genres)
+                   VALUES (?, ?, ?, ?, ?)''',
                    (track['name'],
-                   int(track['duration']),
                    track['listeners'],
-                   track['mbid'],
-                   track['url'],
-                   track['streamable']['#text'],
                    track['artist']['name'],
-                   track['artist']['mbid'],
-                   track['artist']['url'],
-                   track['image'][0]['#text'], # image_small
-                   track['image'][1]['#text'], # image_medium
-                   track['image'][2]['#text'], # image_large
-                   track['image'][3]['#text'], # image_extralarge
-                   int(track['@attr']['rank'])))
+                   int(track['@attr']['rank']),
+                   track['genres'][0])) # First assigned genre
     row_count['lastfm'] += 1
 
 # Insert Youtube data and limit to 25 entries
 for track in data['youtube'][youtube_count:youtube_count + 25]:
-    cursor.execute('''INSERT INTO YouTube (title, channel, view_count, video_url)
-                   VALUES (?, ?, ?, ?)''',
+    cursor.execute('''INSERT OR IGNORE INTO YouTube (title, channel, view_count)
+                   VALUES (?, ?, ?)''',
                    (track['title'],
                     track['channel'],
-                    track['view_count'],
-                    track['video_url']))
+                    track['view_count']))
     row_count['youtube'] += 1
 
 # Commit changes and close database
 conn.commit()
-print(f"Added {row_count['spotify']} Spotify rows")
+print(f"Added {row_count['spotify_tracks']} Spotify rows")
 print(f"Added {row_count['lastfm']} Lastfm rows")
 print(f"Added {row_count['youtube']} YouTube rows")
+
+# cursor.execute('SELECT AVG(popularity) FROM Spotify')
+
+# cursor.execute('SELECT ')
+
+# avg_spotify_popularity = cursor.fetchone()[0]
+
 conn.close()
 
 # Generate Visualizations
