@@ -17,12 +17,30 @@ total_lastfm_listeners = cursor.fetchone()[0]
 cursor.execute('SELECT channel, MAX(view_count) FROM YouTube')
 most_viewed_channel = cursor.fetchone()
 
-# Join SpotifyTracks & SpotifyArtists
-cursor.execute('''SELECT SpotifyTracks.name, SpotifyArtists.name AS artist_name
+# Calc avg popularity by artist
+cursor.execute('''
+               SELECT SpotifyArtists.name AS artist_name, AVG(SpotifyTracks.popularity) AS avg_popularity
                FROM SpotifyTracks
                JOIN SpotifyArtists ON SpotifyTracks.track_id = SpotifyArtists.track_id
+               GROUP BY SpotifyArtists.name
                ''')
-tracks_artists_list = cursor.fetchall()
+artist_popularity_list = cursor.fetchall()
+
+# Fetch most popular songs and their Lastfm ranks
+cursor.execute('''
+               SELECT genres, rank
+               FROM Lastfm
+               ''')
+genre_ranks = cursor.fetchall()
+
+# Fetch top 5 artists by Lastfm listeners
+cursor.execute('''
+               SELECT artist_name, listeners
+               FROM Lastfm
+               ORDER BY listeners DESC
+               LIMIT 5
+               ''')
+top5_lastfm_artists = cursor.fetchall()
 
 data = {
     "avg_spotify_popularity": avg_spotify_popularity,
@@ -31,7 +49,9 @@ data = {
         "channel": most_viewed_channel[0],
         "view_count": most_viewed_channel[1]
     },
-    "Spotify Tracks & Artists": tracks_artists_list
+    "artist_popularity_list": artist_popularity_list,
+    "genre_ranks": genre_ranks,
+    "top5_lastfm_artists": top5_lastfm_artists
 }
 
 # Write calculations to JSON file 

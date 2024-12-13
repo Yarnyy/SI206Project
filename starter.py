@@ -2,9 +2,6 @@ import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import json
 import requests
-import matplotlib.pyplot as plt
-import pandas as pd
-from pandas import json_normalize
 import sqlite3
 
 # Spotify API Credentials

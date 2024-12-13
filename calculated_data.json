@@ -5,170 +5,266 @@
         "channel": "T-Series Telugu",
         "view_count": 45689977
     },
-    "Spotify Tracks & Artists": [
+    "artist_popularity_list": [
         [
-            "APT.",
-            "ROSÉ"
+            "Addison Rae",
+            86.0
         ],
         [
-            "APT.",
-            "Bruno Mars"
+            "Ariana Grande",
+            73.0
         ],
         [
-            "Too Sweet",
-            "Hozier"
+            "Benson Boone",
+            85.0
         ],
         [
-            "Taste",
-            "Sabrina Carpenter"
+            "Besomage",
+            46.0
         ],
         [
-            "Beautiful Things",
-            "Benson Boone"
+            "Besomorph",
+            52.0
         ],
         [
-            "That’s So True",
-            "Gracie Abrams"
+            "Billie Eilish",
+            96.0
         ],
         [
-            "Die With A Smile",
-            "Lady Gaga"
+            "Black Dolphin",
+            49.0
         ],
         [
-            "Breathe Me In",
-            "Besomorph"
+            "Bromage",
+            38.0
         ],
         [
-            "Breathe Me In",
-            "Mougleta"
+            "Bruno Mars",
+            98.0
         ],
         [
-            "greedy",
-            "Tate McRae"
+            "Bryson Tiller",
+            78.0
         ],
         [
-            "A Bar Song (Tipsy)",
-            "Shaboozey"
+            "CADMIUM",
+            41.0
         ],
         [
-            "Mantra",
-            "JENNIE"
+            "Chappell Roan",
+            87.0
         ],
         [
-            "MILLION DOLLAR BABY",
-            "Tommy Richman"
+            "Charli xcx",
+            82.0
         ],
         [
-            "Game's Up",
-            "RIELL"
+            "Gigi Perez",
+            63.0
         ],
         [
-            "BIRDS OF A FEATHER",
-            "Billie Eilish"
+            "Gracie Abrams",
+            94.0
         ],
         [
-            "Who",
-            "Jimin"
+            "Hozier",
+            57.0
         ],
         [
-            "Diet Pepsi",
-            "Addison Rae"
+            "Hypermorph",
+            46.0
         ],
         [
-            "Moonlit Floor (Kiss Me)",
-            "LISA"
+            "JENNIE",
+            87.0
         ],
         [
-            "I Had Some Help (Feat. Morgan Wallen)",
-            "Post Malone"
+            "Jimin",
+            91.0
         ],
         [
-            "I Had Some Help (Feat. Morgan Wallen)",
-            "Morgan Wallen"
+            "Jordan Adetunji",
+            84.0
         ],
         [
-            "i like the way you kiss me",
-            "midnight Berlin"
+            "LISA",
+            87.0
         ],
         [
-            "yes, and?",
-            "Ariana Grande"
+            "Lady Gaga",
+            99.0
         ],
         [
-            "Belong Together",
-            "Mark Ambor"
+            "Mark Ambor",
+            80.0
         ],
         [
-            "Birds Of A Feather",
-            "Besomage"
+            "Morgan Wallen",
+            83.0
         ],
         [
-            "Birds Of A Feather",
-            "Hypermorph"
+            "Mougleta",
+            52.0
         ],
         [
-            "Birds Of A Feather",
-            "Snoblack"
+            "Myles Smith",
+            87.0
         ],
         [
-            "Fortnight (feat. Post Malone)",
-            "Taylor Swift"
+            "Ndotz",
+            85.0
         ],
         [
-            "Lose Control",
-            "Black Dolphin"
+            "Playboi Carti",
+            92.0
         ],
         [
-            "HOT TO GO!",
-            "Chappell Roan"
+            "Post Malone",
+            83.0
         ],
         [
-            "Timeless (with Playboi Carti)",
-            "The Weeknd"
+            "RIELL",
+            45.0
         ],
         [
-            "Timeless (with Playboi Carti)",
-            "Playboi Carti"
+            "ROSÉ",
+            98.0
         ],
         [
-            "Apple",
-            "Charli xcx"
+            "Richy Mitch & The Coal Miners",
+            84.0
         ],
         [
-            "KEHLANI",
-            "Jordan Adetunji"
+            "Sabrina Carpenter",
+            92.0
         ],
         [
-            "Stargazing",
-            "Myles Smith"
+            "Shaboozey",
+            86.0
         ],
         [
-            "Out of My League",
-            "CADMIUM"
+            "Snoblack",
+            46.0
         ],
         [
-            "Out of My League",
-            "Timmy Commerford"
+            "Tate McRae",
+            86.0
         ],
         [
-            "Embrace It",
-            "Ndotz"
+            "Taylor Swift",
+            84.0
         ],
         [
-            "Sailor Song",
-            "Gigi Perez"
+            "The Weeknd",
+            92.0
         ],
         [
-            "She Doesn't Mind",
-            "Bromage"
+            "Timmy Commerford",
+            41.0
         ],
         [
-            "Evergreen",
-            "Richy Mitch & The Coal Miners"
+            "Tommy Richman",
+            35.0
         ],
         [
-            "Whatever She Wants",
-            "Bryson Tiller"
+            "midnight Berlin",
+            45.0
+        ]
+    ],
+    "genre_ranks": [
+        [
+            "rock",
+            0
+        ],
+        [
+            "indie",
+            1
+        ],
+        [
+            "psychedelic",
+            2
+        ],
+        [
+            "Grunge",
+            3
+        ],
+        [
+            "80s",
+            4
+        ],
+        [
+            "electronic",
+            5
+        ],
+        [
+            "alternative",
+            9
+        ],
+        [
+            "rnb",
+            12
+        ],
+        [
+            "rap",
+            17
+        ],
+        [
+            "classic rock",
+            18
+        ],
+        [
+            "Disco",
+            21
+        ],
+        [
+            "female vocalists",
+            22
+        ],
+        [
+            "punk rock",
+            24
+        ],
+        [
+            "90s",
+            25
+        ],
+        [
+            "Psychedelic Soul",
+            28
+        ],
+        [
+            "Hip-Hop",
+            29
+        ],
+        [
+            "christmas",
+            33
+        ],
+        [
+            "ska",
+            36
+        ]
+    ],
+    "top5_lastfm_artists": [
+        [
+            "Nirvana",
+            3374906
+        ],
+        [
+            "The Killers",
+            3241830
+        ],
+        [
+            "Gorillaz",
+            2866527
+        ],
+        [
+            "MGMT",
+            2273105
+        ],
+        [
+            "Tears for Fears",
+            2123937
         ]
     ]
 }
