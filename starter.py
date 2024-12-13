@@ -25,10 +25,10 @@ sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(
     client_secret=SPOTIPY_CLIENT_SECRET
 ))
 
-# Fetch Spotify Global Top 50
+# Fetch Spotify Global Top 100
 def fetch_spotify_top_tracks():
     playlist_id = "1Cgey68pUlQGsCPI2wJuxr"
-    results = sp.playlist_tracks(playlist_id=playlist_id, limit=30)
+    results = sp.playlist_tracks(playlist_id=playlist_id, limit=100)
     top_tracks = [
         {
             "name": track['track']['name'],
@@ -40,14 +40,14 @@ def fetch_spotify_top_tracks():
     ]
     return top_tracks
 
-# Fetch Last.fm Top Tracks
+# Fetch Last.fm Top 50 Tracks
 def fetch_lastfm_top_tracks(country):
     params = {
         "method": "geo.gettoptracks",
         "country": country,
         "api_key": LASTFM_API_KEY,
         "format": "json",
-        "limit": 30
+        "limit": 50
     }
     response = requests.get(LASTFM_BASE_URL, params=params)
     data = response.json()
@@ -84,8 +84,8 @@ def fetch_youtube_videos(region_code="US"):
         "chart": "mostPopular",
         "regionCode": region_code,
         "videoCategoryId": "10",  # Music category
-        "maxResults": 30,
-        "key": YOUTUBE_API_KEY
+        "maxResults": 50,
+        "key": YOUTUBE_API_KEY,
     }
     response = requests.get(f"{YOUTUBE_BASE_URL}/videos", params=params)
     data = response.json()
@@ -132,6 +132,11 @@ cursor = conn.cursor()
 with open('combined_music_data.json', 'r', encoding='utf-8') as f:
     data = json.load(f)
 
+# Delete existing data
+# cursor.execute('DELETE FROM Spotify')
+# cursor.execute('DELETE FROM Lastfm')
+# cursor.execute('DELETE FROM YouTube')
+
 # Create Spotify Table
 cursor.execute('''CREATE TABLE IF NOT EXISTS Spotify (
                id INTEGER PRIMARY KEY,
@@ -173,8 +178,16 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS YouTube (
 # Track number of rows in each table
 row_count = {'spotify': 0, 'lastfm': 0, 'youtube': 0}
 
+def get_current_rows(table):
+    cursor.execute(f"SELECT COUNT(*) FROM {table}")
+    return cursor.fetchone()[0]
+
+spotify_count = get_current_rows('Spotify')
+lastfm_count = get_current_rows('Lastfm')
+youtube_count = get_current_rows('YouTube')
+
 # Insert Spotify data and limit to 25 entries
-for track in data['spotify'][:25]:
+for track in data['spotify'][spotify_count:spotify_count + 25]:
     cursor.execute('''INSERT INTO Spotify (name, artists, popularity, track_url)
                    VALUES (?, ?, ?, ?)''',
                    (track['name'],
@@ -184,7 +197,7 @@ for track in data['spotify'][:25]:
     row_count['spotify'] += 1
 
 # Insert Lastfm data and limit to 25 entries
-for track in data['lastfm'][:25]:
+for track in data['lastfm'][lastfm_count:lastfm_count + 25]:
     cursor.execute('''INSERT INTO Lastfm (name, duration, listeners, mbid, url, streamable, artist_name, artist_mbid,
                                         artist_url, image_small, image_medium, image_large, image_extralarge, rank)
                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''',
@@ -205,7 +218,7 @@ for track in data['lastfm'][:25]:
     row_count['lastfm'] += 1
 
 # Insert Youtube data and limit to 25 entries
-for track in data['youtube'][:25]:
+for track in data['youtube'][youtube_count:youtube_count + 25]:
     cursor.execute('''INSERT INTO YouTube (title, channel, view_count, video_url)
                    VALUES (?, ?, ?, ?)''',
                    (track['title'],
@@ -216,12 +229,15 @@ for track in data['youtube'][:25]:
 
 # Commit changes and close database
 conn.commit()
-print("DB Commit Successful")
+print(f"Added {row_count['spotify']} Spotify rows")
+print(f"Added {row_count['lastfm']} Lastfm rows")
+print(f"Added {row_count['youtube']} YouTube rows")
 conn.close()
 
 # Generate Visualizations
 
     # Spotify Popularity
+
 
     # YouTube View Count
 
