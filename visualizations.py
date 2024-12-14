@@ -52,3 +52,39 @@ fig3 = px.pie(
 # Add additional lables and increase font size 
 fig3.update_traces(textinfo='label+percent', textfont_size=20, title={'text': 'Top 5 Lastfm Artists', 'font': {'size': 30}})
 fig3.show()
+
+# Re-creating the DataFrames
+artist_popularity_list = pd.DataFrame(data['artist_popularity_list'][:30], columns=['artist', 'popularity_rating'])
+artist_popularity_list = artist_popularity_list.sort_values(by='popularity_rating', ascending=False)
+
+top5_lastfm_artists = pd.DataFrame(data['top5_lastfm_artists'], columns=['artist', 'listeners'])
+
+# Scatter Plot
+fig4 = px.scatter(
+    artist_popularity_list,
+    x='artist',
+    y='popularity_rating',
+    size='popularity_rating',
+    color='popularity_rating',
+    labels={'artist': 'Artist', 'popularity_rating': 'Popularity Rating'},
+    title='Scatter Plot of Spotify Artist Popularity'
+)
+fig4.update_traces(marker=dict(line=dict(width=1)))
+fig4.show()
+
+# Adding YouTube data to compare with Last.fm top 5
+yt_channel_data = pd.DataFrame(
+    [{'artist': data['most_viewed_yt_channel']['channel'], 
+      'listeners': data['most_viewed_yt_channel']['view_count']}]
+)
+combined_data = pd.concat([top5_lastfm_artists, yt_channel_data], ignore_index=True)
+
+# Bar Chart
+fig5 = px.bar(
+    combined_data,
+    x='artist',
+    y='listeners',
+    labels={'artist': 'Artist/Channel', 'listeners': 'Number of Listeners/Views'},
+    title='Top 5 Lastfm Artists vs Most Viewed YouTube Channel'
+)
+fig5.show()
