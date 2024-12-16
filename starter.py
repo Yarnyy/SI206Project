@@ -50,7 +50,7 @@ def fetch_lastfm_top_tracks(country):
     data = response.json()
     if "tracks" in data:
         return data["tracks"]["track"]
-    
+
     return []
 
 # Fetch Genres for Last.fm Tracks
@@ -133,6 +133,8 @@ with open('combined_music_data.json', 'r', encoding='utf-8') as f:
 # cursor.execute('DELETE FROM SpotifyTracks')
 # cursor.execute('DELETE FROM Lastfm')
 # cursor.execute('DELETE FROM YouTube')
+# cursor.execute('DELETE FROM Artists')
+# cursor.execute('DELETE FROM Genres')
 
 # Create SpotifyTracks Table
 cursor.execute('''CREATE TABLE IF NOT EXISTS SpotifyTracks (
@@ -146,8 +148,16 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS SpotifyTracks (
 cursor.execute('''CREATE TABLE IF NOT EXISTS SpotifyArtists (
                artist_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
                track_id INTEGER,
-               name TEXT UNIQUE,
-               FOREIGN KEY (track_id) REFERENCES SpotifyTracks(track_id)
+               name TEXT,
+               FOREIGN KEY (track_id) REFERENCES SpotifyTracks(track_id),
+               UNIQUE (track_id, name)
+               )
+               ''')
+
+# Create Genres Table
+cursor.execute('''CREATE TABLE IF NOT EXISTS Genres (
+               genre_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+               name TEXT UNIQUE
                )
                ''')
 
@@ -156,9 +166,18 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS Lastfm (
                id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
                name TEXT UNIQUE,
                listeners INTEGER,
-               artist_name TEXT UNIQUE,
+               artist_id INTEGER,
                rank INTEGER,
-               genres TEXT UNIQUE
+               genre_id INTEGER,
+               FOREIGN KEY (artist_id) REFERENCES Artists(artist_id),
+               FOREIGN KEY (genre_id) REFERENCES Genres(genre_id)
+               )
+               ''')
+
+# Create Artists Table
+cursor.execute('''CREATE TABLE IF NOT EXISTS Artists (
+               artist_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+               name TEXT UNIQUE
                )
                ''')
 
@@ -172,59 +191,109 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS YouTube (
                ''')
 
 # Track number of rows in each table
-row_count = {'spotify_tracks': 0, 'lastfm': 0, 'youtube': 0}
-
 def get_current_rows(table):
     cursor.execute(f"SELECT COUNT(*) FROM {table}")
     return cursor.fetchone()[0]
 
-spotify_count = get_current_rows('SpotifyTracks')
+spotify_tracks_count = get_current_rows('SpotifyTracks')
+spotify_artists_count = get_current_rows('SpotifyArtists')
 lastfm_count = get_current_rows('Lastfm')
+artist_count = get_current_rows('Artists')
+genre_count = get_current_rows('Genres')
 youtube_count = get_current_rows('YouTube')
 
-# Insert Spotify data and limit to 25 entries
-for track in data['spotify'][spotify_count:spotify_count + 25]:
+# Initialize row counters
+total_rows_added = 0
+max_rows = 25
+
+# Insert Spotify data and limit to 10 entries
+for track in data['spotify'][spotify_tracks_count: spotify_tracks_count + 10]:
+    
+    # Stop if 25 rows in database
+    if total_rows_added >= max_rows: break
+    
     cursor.execute('''INSERT OR IGNORE INTO SpotifyTracks (name, popularity)
                    VALUES (?, ?)''',
-                   (track['name'],
-                    track['popularity']))
+                   (track['name'], track['popularity']))
+    
+    # Increment when a row is added
+    if cursor.rowcount > 0: total_rows_added += 1
+
+    # Check again if limit is reached
+    if total_rows_added >= max_rows: break
+
     track_id = cursor.lastrowid # Get id of current AUTOINCREMENT insert
-    for artist in track['artists']:
+
+    for artist in track['artists'][spotify_artists_count:]:
+        if total_rows_added >= max_rows: break
+
+        cursor.execute('''INSERT OR IGNORE INTO Artists (name) VALUES (?)''', (artist,))
+        if cursor.rowcount > 0: total_rows_added += 1
+        if total_rows_added >= max_rows: break
+
+        cursor.execute('''SELECT artist_id FROM Artists WHERE name = ?''', (artist,))
+        artist_id = cursor.fetchone()[0]
+
         cursor.execute('''INSERT OR IGNORE INTO SpotifyArtists (track_id, name)
                        VALUES (?, ?)''',
-                       (track_id,
-                        artist))    
-    row_count['spotify_tracks'] += 1                   
+                       (track_id, artist)) 
+        if cursor.rowcount > 0: total_rows_added += 1
+        if total_rows_added >= max_rows: break
 
-# Insert Lastfm data and limit to 25 entries
-for track in data['lastfm'][lastfm_count:lastfm_count + 25]:
-    cursor.execute('''INSERT OR IGNORE INTO Lastfm (name, listeners, artist_name, rank, genres)
+# Insert Lastfm data and limit to 9 entries
+for track in data['lastfm'][lastfm_count: lastfm_count + 4]:
+    if total_rows_added >= max_rows: break
+
+    # Create artist_id and prevent duplicates
+    cursor.execute('''INSERT OR IGNORE INTO Artists (name) VALUES (?)''', (track['artist']['name'],))
+    if cursor.rowcount > 0: total_rows_added += 1
+    if total_rows_added >= max_rows: break
+
+    cursor.execute('''SELECT artist_id FROM Artists WHERE name = ?''', (track['artist']['name'],))
+    artist_id = cursor.fetchone()[0]
+
+    # Create genre_id and prevent duplicates
+    cursor.execute('''INSERT OR IGNORE INTO Genres (name) VALUES (?)''', (track['genres'][0],)) # First assigned genre
+    if cursor.rowcount > 0: total_rows_added += 1
+    if total_rows_added >= max_rows: break
+
+    cursor.execute('''SELECT genre_id FROM Genres WHERE name = ?''', (track['genres'][0],))
+    genre_id = cursor.fetchone()[0]
+
+    # Fill Lastfm with data and ids 
+    cursor.execute('''INSERT OR IGNORE INTO Lastfm (name, listeners, artist_id, rank, genre_id)
                    VALUES (?, ?, ?, ?, ?)''',
                    (track['name'],
                    track['listeners'],
-                   track['artist']['name'],
+                   artist_id,
                    int(track['@attr']['rank']),
-                   track['genres'][0])) # First assigned genre
-    row_count['lastfm'] += 1
+                   genre_id)) 
+    if cursor.rowcount > 0: total_rows_added += 1
 
-# Insert Youtube data and limit to 25 entries
-for track in data['youtube'][youtube_count:youtube_count + 25]:
+# Insert Youtube data and limit to 8 entries
+for track in data['youtube'][youtube_count:]:
+    if total_rows_added >= max_rows: break
+    
     cursor.execute('''INSERT OR IGNORE INTO YouTube (title, channel, view_count)
                    VALUES (?, ?, ?)''',
                    (track['title'],
                     track['channel'],
                     track['view_count']))
-    row_count['youtube'] += 1
+    if cursor.rowcount > 0: total_rows_added += 1
+    if total_rows_added >= max_rows: break
 
 # Commit changes and close database
 conn.commit()
-print(f"Added {row_count['spotify_tracks']} Spotify rows")
-print(f"Added {row_count['lastfm']} Lastfm rows")
-print(f"Added {row_count['youtube']} YouTube rows")
+
+total_db_rows = (get_current_rows('SpotifyTracks') + 
+                 get_current_rows('SpotifyArtists') +
+                 get_current_rows('Lastfm') + 
+                 get_current_rows('Artists') + 
+                 get_current_rows('Genres') +
+                 get_current_rows('YouTube'))
+
+print(f"Rows Added: {total_rows_added}")
+print(f"Total number of rows in the database: {total_db_rows}")
 
 # Close database connection
 conn.close()
-
-# Main Execution
-
-
