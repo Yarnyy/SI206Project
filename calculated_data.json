@@ -1,176 +1,11 @@
 {
-    "avg_spotify_popularity": 74.42,
-    "total_lastfm_listeners": 34326778,
+    "avg_spotify_popularity": 74.36842105263158,
+    "total_lastfm_listeners": 28947031,
     "most_viewed_yt_channel": {
-        "channel": "T-Series Telugu",
-        "view_count": 45689977
+        "channel": "ROSÉ",
+        "view_count": 37988858
     },
-    "artist_popularity_list": [
-        [
-            "Addison Rae",
-            86.0
-        ],
-        [
-            "Ariana Grande",
-            73.0
-        ],
-        [
-            "Benson Boone",
-            85.0
-        ],
-        [
-            "Besomage",
-            46.0
-        ],
-        [
-            "Besomorph",
-            52.0
-        ],
-        [
-            "Billie Eilish",
-            96.0
-        ],
-        [
-            "Black Dolphin",
-            49.0
-        ],
-        [
-            "Bromage",
-            38.0
-        ],
-        [
-            "Bruno Mars",
-            98.0
-        ],
-        [
-            "Bryson Tiller",
-            78.0
-        ],
-        [
-            "CADMIUM",
-            41.0
-        ],
-        [
-            "Chappell Roan",
-            87.0
-        ],
-        [
-            "Charli xcx",
-            82.0
-        ],
-        [
-            "Gigi Perez",
-            63.0
-        ],
-        [
-            "Gracie Abrams",
-            94.0
-        ],
-        [
-            "Hozier",
-            57.0
-        ],
-        [
-            "Hypermorph",
-            46.0
-        ],
-        [
-            "JENNIE",
-            87.0
-        ],
-        [
-            "Jimin",
-            91.0
-        ],
-        [
-            "Jordan Adetunji",
-            84.0
-        ],
-        [
-            "LISA",
-            87.0
-        ],
-        [
-            "Lady Gaga",
-            99.0
-        ],
-        [
-            "Mark Ambor",
-            80.0
-        ],
-        [
-            "Morgan Wallen",
-            83.0
-        ],
-        [
-            "Mougleta",
-            52.0
-        ],
-        [
-            "Myles Smith",
-            87.0
-        ],
-        [
-            "Ndotz",
-            85.0
-        ],
-        [
-            "Playboi Carti",
-            92.0
-        ],
-        [
-            "Post Malone",
-            83.0
-        ],
-        [
-            "RIELL",
-            45.0
-        ],
-        [
-            "ROSÉ",
-            98.0
-        ],
-        [
-            "Richy Mitch & The Coal Miners",
-            84.0
-        ],
-        [
-            "Sabrina Carpenter",
-            92.0
-        ],
-        [
-            "Shaboozey",
-            86.0
-        ],
-        [
-            "Snoblack",
-            46.0
-        ],
-        [
-            "Tate McRae",
-            86.0
-        ],
-        [
-            "Taylor Swift",
-            84.0
-        ],
-        [
-            "The Weeknd",
-            92.0
-        ],
-        [
-            "Timmy Commerford",
-            41.0
-        ],
-        [
-            "Tommy Richman",
-            35.0
-        ],
-        [
-            "midnight Berlin",
-            45.0
-        ]
-    ],
+    "artist_popularity_list": [],
     "genre_ranks": [
         [
             "rock",
@@ -197,52 +32,28 @@
             5
         ],
         [
+            "rock",
+            6
+        ],
+        [
+            "rock",
+            7
+        ],
+        [
+            "rock",
+            8
+        ],
+        [
             "alternative",
             9
         ],
         [
-            "rnb",
-            12
+            "alternative",
+            10
         ],
         [
-            "rap",
-            17
-        ],
-        [
-            "classic rock",
-            18
-        ],
-        [
-            "Disco",
-            21
-        ],
-        [
-            "female vocalists",
-            22
-        ],
-        [
-            "punk rock",
-            24
-        ],
-        [
-            "90s",
-            25
-        ],
-        [
-            "Psychedelic Soul",
-            28
-        ],
-        [
-            "Hip-Hop",
-            29
-        ],
-        [
-            "christmas",
-            33
-        ],
-        [
-            "ska",
-            36
+            "80s",
+            11
         ]
     ],
     "top5_lastfm_artists": [
@@ -255,16 +66,16 @@
             3241830
         ],
         [
+            "Radiohead",
+            3098810
+        ],
+        [
             "Gorillaz",
             2866527
         ],
         [
-            "MGMT",
-            2273105
-        ],
-        [
-            "Tears for Fears",
-            2123937
+            "Foo Fighters",
+            2494045
         ]
     ]
 }
