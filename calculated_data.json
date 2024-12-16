@@ -5,7 +5,36 @@
         "channel": "ROSÉ",
         "view_count": 37988858
     },
-    "artist_popularity_list": [],
+    "artist_popularity_list": [
+        [
+            "Benson Boone",
+            85.0
+        ],
+        [
+            "Bruno Mars",
+            98.5
+        ],
+        [
+            "Gracie Abrams",
+            94.0
+        ],
+        [
+            "Hozier",
+            57.0
+        ],
+        [
+            "Lady Gaga",
+            99.0
+        ],
+        [
+            "ROSÉ",
+            98.0
+        ],
+        [
+            "Sabrina Carpenter",
+            90.5
+        ]
+    ],
     "genre_ranks": [
         [
             "rock",

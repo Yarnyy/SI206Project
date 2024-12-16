@@ -17,13 +17,12 @@ total_lastfm_listeners = cursor.fetchone()[0]
 cursor.execute('SELECT channel, MAX(view_count) FROM YouTube')
 most_viewed_channel = cursor.fetchone()
 
-# Calc avg popularity by artist
+# Calc avg popularity by artist (Spotify)
 cursor.execute('''
-               SELECT Artists.name AS artist_name, AVG(SpotifyTracks.popularity) AS avg_popularity
+               SELECT SpotifyArtists.name AS artist_name, AVG(SpotifyTracks.popularity) AS avg_popularity
                FROM SpotifyTracks
                JOIN SpotifyArtists ON SpotifyTracks.track_id = SpotifyArtists.track_id
-               JOIN Artists ON SpotifyArtists.artist_id = Artists.artist_id
-               GROUP BY Artists.name
+               GROUP BY SpotifyArtists.name
                ''')
 artist_popularity_list = cursor.fetchall()
 

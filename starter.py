@@ -148,9 +148,9 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS SpotifyTracks (
 cursor.execute('''CREATE TABLE IF NOT EXISTS SpotifyArtists (
                artist_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
                track_id INTEGER,
-               name TEXT,
+               FOREIGN KEY (artist_id) REFERENCES Artists(artist_id),
                FOREIGN KEY (track_id) REFERENCES SpotifyTracks(track_id),
-               UNIQUE (track_id, name)
+               UNIQUE (track_id, artist_id)
                )
                ''')
 
@@ -234,13 +234,13 @@ for track in data['spotify'][spotify_tracks_count: spotify_tracks_count + 10]:
         cursor.execute('''SELECT artist_id FROM Artists WHERE name = ?''', (artist,))
         artist_id = cursor.fetchone()[0]
 
-        cursor.execute('''INSERT OR IGNORE INTO SpotifyArtists (track_id, name)
+        cursor.execute('''INSERT OR IGNORE INTO SpotifyArtists (track_id, artist_id)
                        VALUES (?, ?)''',
-                       (track_id, artist)) 
+                       (track_id, artist_id)) 
         if cursor.rowcount > 0: total_rows_added += 1
         if total_rows_added >= max_rows: break
 
-# Insert Lastfm data and limit to 9 entries
+# Insert Lastfm data and limit to 4 entries
 for track in data['lastfm'][lastfm_count: lastfm_count + 4]:
     if total_rows_added >= max_rows: break
 
@@ -270,7 +270,7 @@ for track in data['lastfm'][lastfm_count: lastfm_count + 4]:
                    genre_id)) 
     if cursor.rowcount > 0: total_rows_added += 1
 
-# Insert Youtube data and limit to 8 entries
+# Insert Youtube data
 for track in data['youtube'][youtube_count:]:
     if total_rows_added >= max_rows: break
     
