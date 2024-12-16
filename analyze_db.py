@@ -19,20 +19,27 @@ most_viewed_channel = cursor.fetchone()
 
 # Calc avg popularity by artist (Spotify)
 cursor.execute('''
-               SELECT SpotifyArtists.name AS artist_name, AVG(SpotifyTracks.popularity) AS avg_popularity
+               SELECT Artists.name AS artist_name, AVG(SpotifyTracks.popularity) AS avg_popularity
                FROM SpotifyTracks
                JOIN SpotifyArtists ON SpotifyTracks.track_id = SpotifyArtists.track_id
-               GROUP BY SpotifyArtists.name
+               JOIN Artists ON SpotifyArtists.artist_id = Artists.artist_id
+               GROUP BY Artists.name
                ''')
 artist_popularity_list = cursor.fetchall()
 
-# Fetch most popular songs and their Lastfm ranks
+# Fetch 5 most popular song genres and their Lastfm ranks
 cursor.execute('''
-               SELECT Genres.name AS genre_name, Lastfm.rank
+               SELECT Genres.name AS genre_name, MIN(Lastfm.rank) AS top_rank
                FROM Lastfm
                JOIN Genres ON Lastfm.genre_id = Genres.genre_id
+               GROUP BY Genres.name
+               ORDER BY top_rank
+               LIMIT 5
                ''')
 genre_ranks = cursor.fetchall()
+
+# Increase ranks by 1 to prevent starting from 0
+genre_ranks = [(genre, rank + 1) for genre, rank in genre_ranks]
 
 # Fetch top 5 artists by Lastfm listeners
 cursor.execute('''

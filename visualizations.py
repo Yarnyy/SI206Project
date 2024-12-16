@@ -30,12 +30,15 @@ fig2 = px.line(
     x='genre',
     y='rank',
     labels={'genre': 'Genre','rank': 'Rank'},
-    title='Lastfm Genre Ranks (Lower = More Popular)',
+    title='Top 5 Lastfm Genre Ranks (Lower = More Popular)',
     markers=True,
 )
 
 # Change color, line width and shape
 fig2.update_traces(line_color='blue', line_width=2.5, line_shape='spline')
+
+# Flip the y-axis & remove .5 values
+fig2.update_yaxes(autorange='reversed', tickmode='linear', tick0=1, dtick=1)
 fig2.show()
 
 # Top 5 Lastfm Artists

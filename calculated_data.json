@@ -11,8 +11,12 @@
             85.0
         ],
         [
+            "Besomorph",
+            52.0
+        ],
+        [
             "Bruno Mars",
-            98.5
+            98.0
         ],
         [
             "Gracie Abrams",
@@ -32,57 +36,29 @@
         ],
         [
             "Sabrina Carpenter",
-            90.5
+            92.0
         ]
     ],
     "genre_ranks": [
         [
             "rock",
-            0
-        ],
-        [
-            "indie",
             1
         ],
         [
-            "psychedelic",
+            "indie",
             2
         ],
         [
-            "Grunge",
+            "psychedelic",
             3
         ],
         [
-            "80s",
+            "Grunge",
             4
         ],
         [
-            "electronic",
-            5
-        ],
-        [
-            "rock",
-            6
-        ],
-        [
-            "rock",
-            7
-        ],
-        [
-            "rock",
-            8
-        ],
-        [
-            "alternative",
-            9
-        ],
-        [
-            "alternative",
-            10
-        ],
-        [
             "80s",
-            11
+            5
         ]
     ],
     "top5_lastfm_artists": [
